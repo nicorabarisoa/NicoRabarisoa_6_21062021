@@ -70,7 +70,7 @@ export class LightboxModal {
     leftButton.classList.add(`${elementBEMName}__control`, 'js-focusable', 'js-prev');
 
     const leftButtonImg = document.createElement('img');
-    leftButtonImg.setAttribute('src', 'dist/img/gallery-control.svg');
+    leftButtonImg.setAttribute('src', 'publi/img/gallery-control.svg');
     leftButton.appendChild(leftButtonImg);
     leftDiv.appendChild(leftButton);
 
@@ -81,7 +81,7 @@ export class LightboxModal {
     rightButton.classList.add(`${elementBEMName}__control`, 'js-focusable', 'js-next');
 
     const rightButtonImg = document.createElement('img');
-    rightButtonImg.setAttribute('src', 'dist/img/gallery-control.svg');
+    rightButtonImg.setAttribute('src', 'publi/img/gallery-control.svg');
     rightButton.appendChild(rightButtonImg);
 
     const closeBtn = document.createElement('button');
