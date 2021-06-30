@@ -1,0 +1,20 @@
+{
+  "name": "nicorabarisoa_6_21062021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./scss:./public/css"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021.git"
+  },
+  "author": "Nico Rabarisoa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021/issues"
+  },
+  "homepage": "https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021#readme"
+}

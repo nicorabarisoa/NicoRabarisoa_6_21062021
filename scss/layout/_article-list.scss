@@ -1,0 +1,15 @@
+@use '../abstracts/' as *;
+
+.article-list {
+  display: grid;
+  gap: 2rem 0;
+
+  @include mq($tab) {
+    grid-template-columns: repeat(2, 320px);
+    justify-content: space-between;
+  }
+
+  @include mq($medium) {
+    grid-template-columns: repeat(3, 320px);
+  }
+}

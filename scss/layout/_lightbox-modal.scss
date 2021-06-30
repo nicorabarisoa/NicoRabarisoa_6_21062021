@@ -1,0 +1,119 @@
+@use '../abstracts/' as *;
+
+.lightbox-modal {
+  background: $color-base-100;
+
+  section {
+    background: $color-base-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    height: 100%;
+  }
+
+  .close {
+    right: 1rem;
+
+    &::after,
+    &::before {
+      background-color: $color-primary-400;
+    }
+  }
+
+  &__control {
+    background: 0;
+    border: 0;
+    color: $color-primary-400;
+    cursor: pointer;
+    padding: 0;
+
+    img {
+      min-width: 1rem;
+    }
+
+    &:nth-of-type(2) {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .medias {
+    margin: 0 1rem;
+    position: relative;
+    width: 1200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .media {
+      display: none;
+      animation-duration: 350ms;
+      position: absolute;
+      max-width: 1200px;
+
+      &.nextMedia {
+        animation-name: nextSlide;
+      }
+
+      &.previousMedia {
+        animation-name: prevSlide;
+      }
+
+      &.outLeft {
+        animation-name: slideOutLeft;
+      }
+
+      &.outRight {
+        animation-name: slideOutRight;
+      }
+
+      &.visible {
+        display: block;
+      }
+    }
+
+    img,
+    video {
+      object-fit: contain;
+      max-height: 800px;
+    }
+  }
+
+  h2 {
+    font-weight: 400;
+  }
+
+  @include mq($medium) {
+    &__control img {
+      width: 2rem;
+    }
+
+    .medias {
+      img,
+      video {
+        max-width: 1200px;
+      }
+    }
+    .close {
+      top: 2.25rem;
+
+      &::after,
+      &::before {
+        width: 3rem;
+        height: 5px;
+      }
+
+      &::after {
+        margin-top: -5px;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}

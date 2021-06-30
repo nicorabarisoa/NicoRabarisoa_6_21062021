@@ -1,0 +1,58 @@
+@use '../abstracts/' as *;
+
+.figure {
+  height: 13.75rem;
+
+  a {
+    height: calc(100% - 2rem);
+    width: 100%;
+    display: block;
+
+    picture,
+    img,
+    video {
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+
+    img,
+    video {
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    font-weight: 500;
+
+    div {
+      display: flex;
+
+      button {
+        border: 0;
+        background: 0;
+      }
+
+      img {
+        transition: transform 200ms;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    span {
+      margin-right: 0.5rem;
+    }
+  }
+
+  @include mq($medium) {
+    height: 350px;
+  }
+}

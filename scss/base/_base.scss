@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+* {
+  outline-color: $color-primary-400;
+}
+
+body {
+  font-family: $font;
+  color: $color-primary-400;
+}
+
+.wrapper {
+  padding: 2rem 0 0;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  @include mq($tab) {
+    padding-top: 3.25rem;
+  }
+}
+
+h1 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+main {
+  padding: 0 1.25rem;
+  position: relative;
+}

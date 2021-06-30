@@ -1,0 +1,17 @@
+@use '../abstracts/' as *;
+
+.back {
+  position: fixed;
+  top: 0.75rem;
+  color: $color-base-900;
+  background-color: $color-primary-200;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+}

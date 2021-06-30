@@ -1,0 +1,19 @@
+@use '../abstracts/' as *;
+
+.tag {
+  font-weight: 500;
+  border: 1px solid $color-base-400;
+  border-radius: 1rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+
+  &.active {
+    background-color: $color-primary-300;
+    color: $color-base-100;
+  }
+
+  &:hover {
+    background-color: $color-primary-400;
+    color: $color-base-100;
+  }
+}

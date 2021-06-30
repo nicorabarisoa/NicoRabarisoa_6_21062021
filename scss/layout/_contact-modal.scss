@@ -1,0 +1,56 @@
+@use '../abstracts/' as *;
+
+.contact-modal {
+  background-color: rgba($color-base-400, 0.4);
+
+  section {
+    background: $color-primary-200;
+    color: $color-base-900;
+    height: 100%;
+    width: 100%;
+  }
+
+  .close {
+    &::before,
+    &::after {
+      background-color: $color-base-100;
+    }
+  }
+
+  @include mq($medium) {
+    section {
+      height: 900px;
+      width: 670px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      line-height: 1;
+    }
+
+    form {
+      margin-top: 1rem;
+
+      button {
+        align-self: start;
+        height: 69px;
+        cursor: pointer;
+      }
+    }
+
+    label {
+      font-size: 2.25rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    input {
+      height: 4.25rem;
+      margin-top: 0;
+    }
+
+    textarea {
+      height: 170px;
+    }
+  }
+}
