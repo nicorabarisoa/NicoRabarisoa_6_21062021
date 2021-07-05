@@ -467,6 +467,7 @@ main {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
+  overflow: scroll;
 }
 .modal-window section {
   position: relative;
