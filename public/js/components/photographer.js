@@ -28,14 +28,17 @@ export class Photographer {
     const localisation = document.createElement('span');
     localisation.appendChild(document.createTextNode(`${city}, ${country}`));
     localisation.classList.add(`${elementBEMName}__localisation`);
+    localisation.setAttribute('tabindex', '0');
 
     const slogan = document.createElement('span');
     slogan.appendChild(document.createTextNode(tagline));
     slogan.classList.add(`${elementBEMName}__slogan`);
+    slogan.setAttribute('tabindex', '0');
 
     const priceText = document.createElement('span');
     priceText.appendChild(document.createTextNode(`${price}€/jour`));
     priceText.classList.add(`${elementBEMName}__price`);
+    priceText.setAttribute('tabindex', '0');
 
     paragraph.append(localisation, slogan, priceText);
 
@@ -85,13 +88,13 @@ export class Photographer {
     const likes = utils.getMediaLikes(this.mediasList.medias);
 
     span.appendChild(document.createTextNode(likes));
-    span.setAttribute('tabindex', '0');
+    span.setAttribute('tabindex', '-1');
     const img = utils.createIMG('like-icon-black.svg', 'likes');
     likesDiv.append(span, img);
 
     const priceDiv = document.createElement('span');
     priceDiv.appendChild(document.createTextNode(`${price}€ / jour`));
-    priceDiv.setAttribute('tabindex', '0');
+    priceDiv.setAttribute('tabindex', '-1');
     likesAndPriceDiv.append(likesDiv, priceDiv);
 
     const ul = utils.createTagList(tags);

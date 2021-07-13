@@ -70,6 +70,7 @@ export class LightboxModal {
     leftButton.classList.add(`${elementBEMName}__control`, 'js-focusable', 'js-prev');
 
     const leftButtonImg = document.createElement('img');
+    
     leftButtonImg.setAttribute('src', 'public/img/gallery-control.svg');
     leftButton.appendChild(leftButtonImg);
     leftDiv.appendChild(leftButton);
@@ -79,12 +80,13 @@ export class LightboxModal {
 
     const rightButton = document.createElement('button');
     rightButton.classList.add(`${elementBEMName}__control`, 'js-focusable', 'js-next');
-
+   
     const rightButtonImg = document.createElement('img');
     rightButtonImg.setAttribute('src', 'public/img/gallery-control.svg');
     rightButton.appendChild(rightButtonImg);
 
     const closeBtn = document.createElement('button');
+    
     closeBtn.classList.add('close', 'js-focusable');
 
     section.append(leftButton, mediaBlock, rightButton, closeBtn);
@@ -142,12 +144,13 @@ export class LightboxModal {
         const img = document.createElement('img');
         img.setAttribute('src', link.pathname);
         img.setAttribute('alt', alt);
+        
 
         div.appendChild(img);
       }
 
       const title = document.createElement('h2');
-      title.setAttribute('tabindex', '0');
+     
       title.classList.add('js-focusable');
       title.appendChild(
         document.createTextNode(link.parentElement.getAttribute('data-title'))
