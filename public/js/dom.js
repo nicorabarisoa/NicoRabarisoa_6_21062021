@@ -53,6 +53,7 @@ const createContactBtn = () => {
   btn.classList.add('button');
   btn.id = 'js-contactForm';
   btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('tabindex', '0');
   btn.appendChild(document.createTextNode('Contactez-moi'));
 
   return btn;
@@ -123,7 +124,7 @@ const createTotalLikesDiv = (medias) => {
   const div = document.createElement('div');
   div.classList.add('meta-infos__likes');
   const span = createSPAN(totalLikes);
-  span.setAttribute('tabindex', '0');
+  span.setAttribute('tabindex', '2');
   const img = createIMG('like-icon-black.svg', 'likes');
   div.append(span, img);
   return div;
@@ -135,7 +136,7 @@ const createLikesAndPriceDiv = (photographer, medias) => {
 
   const likes = createTotalLikesDiv(medias);
   const price = createSPAN(`${photographer.price}€ / jour`);
-  price.setAttribute('tabindex', '0');
+  price.setAttribute('tabindex', '2');
   div.append(likes, price);
   return div;
 };
@@ -163,7 +164,7 @@ export const createPhotographerHeader = (photographer, medias) => {
   );
   localisation.setAttribute('tabindex', '0');
   const slogan = createSPAN(tagline, `${elementBEMName}__slogan`);
-  slogan.setAttribute('tabindex', '0');
+  slogan.setAttribute('tabindex', '1');
 
   paragraph.append(localisation, slogan);
 
