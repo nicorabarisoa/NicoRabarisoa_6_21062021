@@ -9,4 +9,7 @@
   @include mq($medium) {
     gap: 1.25rem 5rem;
   }
+  @include mq(320px) {
+    gap: 1.8rem;
+  }
 }

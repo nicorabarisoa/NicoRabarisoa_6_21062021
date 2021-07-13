@@ -448,6 +448,11 @@ main {
     height: 350px;
   }
 }
+@media (min-width: 320px) {
+  .figure {
+    width: 285px;
+  }
+}
 
 .modal-window {
   visibility: hidden;
@@ -612,6 +617,11 @@ header nav {
 @media (min-width: 60rem) {
   .figure-group {
     gap: 1.25rem 5rem;
+  }
+}
+@media (min-width: 320px) {
+  .figure-group {
+    gap: 1.8rem;
   }
 }
 
