@@ -5,6 +5,11 @@
     @content;
   }
 }
+@mixin mx($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
 
 @mixin profile-photo($size) {
   border-radius: 50%;

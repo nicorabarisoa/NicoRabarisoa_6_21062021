@@ -448,9 +448,9 @@ main {
     height: 350px;
   }
 }
-@media (min-width: 320px) {
+@media (max-width: 320px) {
   .figure {
-    width: 285px;
+    width: 280px;
   }
 }
 
@@ -613,15 +613,13 @@ header nav {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
+  /*@include mq(320px) {
+    gap: 1.25rem ;
+  }*/
 }
 @media (min-width: 60rem) {
   .figure-group {
     gap: 1.25rem 5rem;
-  }
-}
-@media (min-width: 320px) {
-  .figure-group {
-    gap: 1.8rem;
   }
 }
 

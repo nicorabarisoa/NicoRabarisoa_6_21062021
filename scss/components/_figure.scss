@@ -55,8 +55,8 @@
   @include mq($medium) {
     height: 350px;
   }
-  @include mq(320px) {
-    width: 285px;
+  @include mx(320px) {
+    width: 280px;
   }
   
  
