@@ -5,9 +5,9 @@ const handleTagClick = (tags, tagClicked) => {
   const thumbnails = document.querySelectorAll('.thumbnail');
 
   /*
-    Parse all tags from Document
-    Toggle active class from tag if clicked tag is already active
-    OR if tag is the same value as clicked tag
+    parse les tags du doc
+    toggle la classe active depuis le tag si le tag cliquée est déjà active
+     ou si le tag est la même valeur que le tag cliquée
   */
   tags.forEach((tag) => {
     if (tag.classList.contains('active') || utils.isSameTagText(tag, tagClicked)) {
