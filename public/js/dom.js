@@ -136,7 +136,7 @@ const createLikesAndPriceDiv = (photographer, medias) => {
 
   const likes = createTotalLikesDiv(medias);
   const price = createSPAN(`${photographer.price}€ / jour`);
-  price.setAttribute('tabindex', '2');
+  price.setAttribute('tabindex', '0');
   div.append(likes, price);
   return div;
 };
