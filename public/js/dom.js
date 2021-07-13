@@ -159,6 +159,7 @@ export const createPhotographerHeader = (photographer, medias) => {
   const localisation = createSPAN(
     `${city}, ${country}`,
     `${elementBEMName}__localisation`
+    
   );
   localisation.setAttribute('tabindex', '0');
   const slogan = createSPAN(tagline, `${elementBEMName}__slogan`);

@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./scss:./public/css"
-    
   },
   "repository": {
     "type": "git",
@@ -16,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021/issues"
   },
-  "homepage": "https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021#readme"
+  "homepage": "https://github.com/nicorabarisoa/NicoRabarisoa_6_21062021#readme",
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
 }
