@@ -1,27 +1,45 @@
-import * as dom from './dom.js';
-import * as home from './homepage.js';
-import * as photograph from './photograph.js';
+import { Homepage } from './components/homepage.js';
+import { PhotographerPage } from './components/photographerPage.js';
 
 const getJSON = async () => {
-  const data = await fetch('public/js/data/fisheyedata.json');
-  const json = await data.json();
-  return json;
+  try {
+    const data = await fetch('public/js/data/fisheyedata.json');
+    const json = await data.json();
+    return [json, null];
+  } catch (error) {
+    return [null, error];
+  }
 };
 
+// renvoie le photographe lié à l'ID en json avec ses médias ajoutés à l'objet
+const getPhotographerWithMedias = (json, id) => {
+  const photographer = json.photographers.find((photographer) => photographer.id === id);
+  const medias = json.media.filter((media) => media.photographerId === id);
+  photographer.medias = medias;
+  return photographer;
+};
+
+// Selon si l'url contient un id de photographe ou non, affiche la page d'accueil ou la page du photographe
 const displayPageByURLQuery = (json, URLQuery) => {
   const URLParams = new URLSearchParams(URLQuery);
   const id = parseInt(URLParams.get('id'));
-  const wrapper = dom.createBodySkeleton();
 
-  if (isFinite(id)) {
-    photograph.constructPhotographPage(json, id, wrapper);
+  if (!isFinite(id)) {
+    const homepage = new Homepage(json.photographers);
+    homepage.getHomepage();
   } else {
-    home.constructHomepage(json.photographers, id, wrapper);
+    const photographerWithMedias = getPhotographerWithMedias(json, id);
+    const photographerPage = new PhotographerPage(photographerWithMedias);
+    photographerPage.getPhotographerPage();
   }
 };
 
 const onLoad = async () => {
-  const json = await getJSON();
+  // fetch le fichier json , si  erreur log erreur
+  const [json, error] = await getJSON();
+  if (error) {
+    console.log('onLoad ~ error', error);
+  }
   const URLQuery = window.location.search;
 
   displayPageByURLQuery(json, URLQuery);

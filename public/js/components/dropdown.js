@@ -1,79 +1,30 @@
-const expandListBox = (btn) => {
-  btn.setAttribute('aria-expanded', 'true');
-  btn.nextElementSibling.classList.add('open');
-};
-
-const collapseListBox = (btn) => {
-  btn.setAttribute('aria-expanded', 'false');
-  btn.nextElementSibling.classList.remove('open');
-};
-
-const createSelectLI = (value, label) => {
-  const li = document.createElement('li');
-  li.id = value;
-  li.setAttribute('role', 'option');
-  li.setAttribute('data-sort', value);
-  li.setAttribute('aria-selected', 'false');
-  li.setAttribute('aria-labelledBy', `${value}Btn`);
-
-  const button = document.createElement('button');
-  button.id = `${value}Btn`;
-  button.appendChild(document.createTextNode(label));
-
-  li.appendChild(button);
-
-  return li;
-};
-
-const changeOptionsAriaValues = (previousOption, newOption) => {
-  previousOption.setAttribute('aria-selected', 'false');
-  newOption.setAttribute('aria-selected', 'true');
-  newOption.closest('ul').setAttribute('aria-activedescendant', newOption.id);
-};
-
-const onChange = (btn, optionList, option, sortMethods, mediasList) => {
-  const options = Array.from(optionList);
-  const selectedOption = options.find(
-    (option) => option.getAttribute('aria-selected') === 'true'
-  );
-  const figureGroup = document.getElementById(mediasList.id);
-  const figures = Array.from(figureGroup.querySelectorAll('figure'));
-
-  if (option !== selectedOption) {
-    changeOptionsAriaValues(selectedOption, option);
-    btn.innerText = option.innerText;
-  }
-  const sortMethod = sortMethods.find((method) => method.value === option.id);
-
-  figures.sort(sortMethod.sort);
-
-  for (const figure of figures) {
-    figureGroup.appendChild(figure);
+export class Dropdown {
+  constructor(options) {
+    this.options = options;
+    this.selectBtn = this.createSelectBtn();
+    this.selectList = this.createSelectList();
+    this.selectOptions = Array.from(this.selectList.childNodes);
   }
 
-  collapseListBox(btn);
-};
-
-export class DropDown {
-  constructor(dropdownLabels, dropdownSortMethods, containerID) {
-    this.optionNames = dropdownLabels;
-    this.optionMethods = dropdownSortMethods;
-    this.id = containerID;
+  expandListBox() {
+    this.selectBtn.setAttribute('aria-expanded', 'true');
+    this.selectList.classList.add('open');
   }
 
-  createDropdown() {
-    const select = document.createElement('div');
-    select.id = this.id;
-    select.classList.add('select-group');
+  collapseListBox() {
+    this.selectBtn.setAttribute('aria-expanded', 'false');
+    this.selectList.classList.remove('open');
+  }
 
+  createSelectLabel() {
     const label = document.createElement('label');
     label.setAttribute('for', 'js-sort');
     label.id = 'ariaLabel';
     label.appendChild(document.createTextNode('Trier par'));
+    return label;
+  }
 
-    const divSelect = document.createElement('div');
-    divSelect.classList.add('select');
-
+  createSelectBtn() {
     const btn = document.createElement('button');
     btn.id = 'js-sort';
     btn.setAttribute('role', 'button');
@@ -81,43 +32,84 @@ export class DropDown {
     btn.setAttribute('aria-haspopup', 'listbox');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-labelledBy', 'ariaLabel');
-    btn.appendChild(document.createTextNode(this.optionNames[0].label));
+    btn.appendChild(document.createTextNode(this.options[0].label));
+    return btn;
+  }
 
+  createSelectListItem(option) {
+    const li = document.createElement('li');
+    li.id = option.value;
+    li.setAttribute('role', 'option');
+    li.setAttribute('data-sort', option.value);
+    li.setAttribute('aria-labelledBy', `${option.value}Btn`);
+
+    const button = document.createElement('button');
+    button.id = `${option.value}Btn`;
+    button.appendChild(document.createTextNode(option.label));
+
+    li.appendChild(button);
+    return li;
+  }
+
+  createSelectList() {
     const ul = document.createElement('ul');
     ul.classList.add('js-select');
     ul.setAttribute('role', 'listbox');
 
-    this.optionNames.forEach((option) => {
-      ul.appendChild(createSelectLI(option.value, option.label));
+    this.options.forEach((option) => {
+      ul.appendChild(this.createSelectListItem(option));
     });
 
     ul.firstElementChild.setAttribute('aria-selected', 'true');
     ul.setAttribute('aria-activedescendant', ul.firstElementChild.getAttribute('id'));
 
-    divSelect.append(btn, ul);
+    return ul;
+  }
+
+  getDropdown() {
+    // éléments du dom
+    const select = document.createElement('div');
+    select.id = 'js-sortContainer';
+    select.classList.add('select-group');
+
+    const label = this.createSelectLabel();
+    const divSelect = document.createElement('div');
+    divSelect.classList.add('select');
+    divSelect.append(this.selectBtn, this.selectList);
     select.append(label, divSelect);
+
+    // évenement du dom
+    this.selectBtn.addEventListener('mouseenter', () => {
+      this.expandListBox();
+    });
+    this.selectBtn.addEventListener('focus', () => {
+      this.expandListBox();
+    });
+    this.selectList.addEventListener('mouseleave', () => {
+      this.collapseListBox();
+    });
+    this.selectList.childNodes.forEach((listItem) => {
+      listItem.addEventListener('focusout', () => {
+        if (listItem === this.selectList.lastChild) {
+          this.collapseListBox();
+        }
+      });
+    });
+
     return select;
   }
 
-  attachEventListeners(mediasList) {
-    const container = document.getElementById(this.id);
-    const sortBtn = container.querySelector('.js-sort');
-    const selectList = container.querySelector('.js-select');
-    const selectListItems = container.querySelectorAll('.js-select li');
+  onChange(option) {
+    // Recherche une option déjà sélectionnée
+    const selectedOption = this.selectOptions.find(
+      (option) => option.getAttribute('aria-selected') === 'true',
+    );
 
-    sortBtn.addEventListener('mouseenter', () => {
-      expandListBox(sortBtn);
-    });
-    selectList.addEventListener('mouseleave', () => {
-      collapseListBox(sortBtn);
-    });
-    sortBtn.addEventListener('focus', () => {
-      expandListBox(sortBtn);
-    });
-    selectListItems.forEach((option) => {
-      option.addEventListener('click', () => {
-        onChange(sortBtn, selectListItems, option, this.optionMethods, mediasList);
-      });
-    });
+    selectedOption.removeAttribute('aria-selected');
+    option.setAttribute('aria-selected', 'true');
+    this.selectList.setAttribute('aria-activedescendant', option.id);
+
+    this.selectBtn.innerText = option.innerText;
+    this.collapseListBox();
   }
 }
