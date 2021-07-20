@@ -82,6 +82,10 @@ export class Dropdown {
     this.selectBtn.addEventListener('mouseenter', () => {
       this.expandListBox();
     });
+    this.selectBtn.addEventListener('click', () => {
+      this.expandListBox();
+    });
+  
     this.selectBtn.addEventListener('focus', () => {
       this.expandListBox();
     });
