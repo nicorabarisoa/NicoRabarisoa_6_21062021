@@ -1,7 +1,12 @@
+@use '../abstracts/' as *;
+
 .tag-list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   padding: 0;
   gap: 0.5rem;
+  @include mx(768px) {
+    justify-content:center;
+  }
 }

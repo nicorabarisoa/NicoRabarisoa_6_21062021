@@ -1,11 +1,11 @@
-/* taille des box */
+/* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* enlève le margin default */
+/* Remove default margin */
 body,
 h1,
 h2,
@@ -19,19 +19,19 @@ dd {
   margin: 0;
 }
 
-/* comportement du scroll*/
+/* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
 }
 
-/* Définir les valeurs par défaut du body */
+/* Set core body defaults */
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
 
-/* Facilite l'utilisation des images */
+/* Make images easier to work with */
 img,
 picture,
 video {
@@ -39,7 +39,7 @@ video {
   display: block;
 }
 
-/* Hérite des polices pour les entrées et les boutons */
+/* Inherit fonts for inputs and buttons */
 input,
 button,
 textarea,
@@ -47,21 +47,20 @@ select {
   font: inherit;
 }
 
-
-/* Hérite de la couleur + Supprime le soulignement sur les liens */
+/* Inherit color + Removing underline on links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Suppression du style sur ul*/
+/* Removing the disc style and padding on ul*/
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-/* Supprimer toutes les animations, transitions et défilement fluide pour les personnes qui préfèrent ne pas les voir */
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -590,6 +589,11 @@ header nav {
   flex-wrap: wrap;
   padding: 0;
   gap: 0.5rem;
+}
+@media (max-width: 768px) {
+  .tag-list {
+    justify-content: center;
+  }
 }
 
 .article-list {
